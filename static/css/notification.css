@@ -1,0 +1,119 @@
+/* Toast notifications only (no body/* reset here) */
+
+.notification-container {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.notification {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  color: #e2e8f0;
+  background: rgba(15, 15, 35, 0.75);
+  animation: notif-in 0.25s ease-out;
+}
+
+.notification.slide-out {
+  animation: notif-out 0.25s ease-in forwards;
+}
+
+.notification-icon {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+}
+
+.notification-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  letter-spacing: 0.2px;
+}
+
+.notification-message {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  opacity: 0.95;
+  word-wrap: break-word;
+}
+
+.notification-close {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.75;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.notification-close:hover {
+  opacity: 1;
+  background: rgba(255,255,255,0.08);
+}
+
+.notification-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(90deg, rgba(0,245,255,0.95), rgba(124,58,237,0.95));
+  animation: notif-progress 5s linear forwards;
+}
+
+/* Variants */
+.notification.success { border-left: 4px solid #10b981; }
+.notification.error   { border-left: 4px solid #ef4444; }
+.notification.warning { border-left: 4px solid #f59e0b; }
+.notification.info    { border-left: 4px solid #00f5ff; }
+
+.notification.success .notification-icon { color: #10b981; }
+.notification.error   .notification-icon { color: #ef4444; }
+.notification.warning .notification-icon { color: #f59e0b; }
+.notification.info    .notification-icon { color: #00f5ff; }
+
+/* Animations */
+@keyframes notif-in {
+  from { transform: translateX(16px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes notif-out {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(16px); opacity: 0; }
+}
+
+@keyframes notif-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+@media (max-width: 768px) {
+  .notification-container {
+    left: 12px;
+    right: 12px;
+    max-width: unset;
+  }
+}

@@ -1,0 +1,351 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experiment-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.experiment-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.experiment-header h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, #00f5ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+    font-weight: 800;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(15, 15, 35, 0.8);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.status-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.status.success .status-icon {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+}
+
+.status.error .status-icon {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
+.status.loading .status-icon {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.15); }
+}
+
+.experiment-section {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.experiment-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+
+.experiment-section h2 {
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #00f5ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.prompts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+}
+
+.prompt-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.prompt-field label {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    color: #e2e8f0;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #00f5ff;
+    box-shadow: 0 0 0 4px rgba(0, 245, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+textarea::placeholder {
+    color: rgba(226, 232, 240, 0.5);
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+}
+
+.checkbox-item:hover {
+    border-color: #00f5ff;
+    background: rgba(0, 245, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 245, 255, 0.2);
+}
+
+.checkbox-item input:checked + span {
+    color: #00f5ff;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.checkbox-item input {
+    width: 22px;
+    height: 22px;
+    accent-color: #00f5ff;
+    cursor: pointer;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.5));
+}
+
+.experiment-submit {
+    width: 100%;
+    padding: 1.75rem 3rem;
+    background: linear-gradient(135deg, #7c3aed 0%, #00f5ff 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.4);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.experiment-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.experiment-submit:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.experiment-submit:hover:not(:disabled) {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(124, 58, 237, 0.6);
+}
+
+.experiment-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+}
+
+.experiment-results {
+    margin-top: 3rem;
+    padding: 0;
+}
+
+.experiment-results h2 {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.result-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+    backdrop-filter: blur(20px);
+    color: #e2e8f0;
+    padding: 3rem;
+    border-radius: 24px;
+    margin: 2rem 0;
+    box-shadow: 0 30px 60px rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.result-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 800;
+    color: #10b981;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.metrics-grid div {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.metrics-grid div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.clearml-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #00f5ff, #7c3aed);
+    color: white;
+    text-decoration: none;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0, 245, 255, 0.3);
+}
+
+.clearml-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px rgba(0, 245, 255, 0.4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    body { padding: 1rem; }
+    .experiment-header h1 { font-size: 2.2rem; }
+    .checkbox-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    .prompts-grid { grid-template-columns: 1fr; }
+    .experiment-section { padding: 2rem; }
+    .metrics-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .checkbox-grid { grid-template-columns: 1fr; }
+    .experiment-section { padding: 1.5rem; }
+}
+
+.status.running { background: linear-gradient(135deg, #28a745, #20c997); color: white; }
+.status.success { background: linear-gradient(135deg, #007bff, #0056b3); color: white; }
+.status.error { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
+.experiment-results.hidden { display: none !important; }
+.highlight { background: linear-gradient(135deg, #ffd700, #ffed4e); padding: 2px 6px; border-radius: 4px; font-weight: 600; }

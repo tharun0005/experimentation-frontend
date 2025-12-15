@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiments</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='css/notification.css') }}">
+</head>
+<body>
+  <main class="experiment-container">
+    <header class="experiment-header">
+      <h1>🚀 Experiments</h1>
+      <div class="status" id="status">
+        <span class="status-icon" id="status-icon"></span>
+        <span id="status-text">Loading...</span>
+      </div>
+    </header>
+
+    <section class="experiment-form">
+      <section class="experiment-section">
+        <h2>🤖 Models</h2>
+        <div class="checkbox-grid" id="model-grid"></div>
+      </section>
+
+      <section class="experiment-section">
+        <h2>📝 System Prompts</h2>
+        <div class="prompts-grid">
+          <div class="prompt-field">
+            <label for="prompt-1">Prompt 1</label>
+            <textarea id="prompt-1" rows="4" placeholder="You are a precise AI assistant..."></textarea>
+          </div>
+          <div class="prompt-field">
+            <label for="prompt-2">Prompt 2</label>
+            <textarea id="prompt-2" rows="4" placeholder="You are a factual assistant..."></textarea>
+          </div>
+          <div class="prompt-field">
+            <label for="prompt-3">Prompt 3</label>
+            <textarea id="prompt-3" rows="4" placeholder="You must rely solely on context..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="experiment-section">
+        <h2>🌡️ Temperature</h2>
+        <div class="checkbox-grid" id="temperature-grid"></div>
+      </section>
+
+      <section class="experiment-section">
+        <h2>📄 Max Tokens</h2>
+        <div class="checkbox-grid" id="max-tokens-grid"></div>
+      </section>
+
+      <button id="submit-btn" class="experiment-submit" disabled>🚀 Start Experiments</button>
+    </section>
+
+    <section id="results" class="experiment-results hidden">
+      <h2>🏆 Results</h2>
+      <div id="results-content"></div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', path='js/notification.js') }}"></script>
+  <script src="{{ url_for('static', path='js/app.js') }}"></script>
+</body>
+</html>
