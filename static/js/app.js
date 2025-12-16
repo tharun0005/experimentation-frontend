@@ -29,7 +29,7 @@ class ExperimentUI {
     }
 
     async init() {
-        console.log('🚀 Starting ExperimentUI...');
+        console.log('Starting ExperimentUI...');
         this.setStatus('loading', 'Initializing...');
 
         this.renderCheckboxes();
@@ -38,7 +38,7 @@ class ExperimentUI {
         this.attachEvents();
         this.toggleSubmit();
         this.setStatus('success', 'Ready');
-        showSuccess('🚀 UI Ready!');
+        showSuccess(' UI Ready!');
     }
 
     renderCheckboxes() {
@@ -68,13 +68,13 @@ class ExperimentUI {
     }
 
     async loadModels() {
-        console.log('🔄 Fetching models from:', `${this.gateway}/api/litellm/models`);
+        console.log(' Fetching models from:', `${this.gateway}/api/litellm/models`);
         this.setStatus('loading', 'Loading models...');
 
         try {
             const res = await fetch(`${this.gateway}/api/litellm/models`);
             const data = await res.json();
-            console.log('🔍 API Response:', data);
+            console.log(' API Response:', data);
 
             let models = [];
             if (Array.isArray(data)) models = data;
@@ -83,7 +83,7 @@ class ExperimentUI {
             else if (data.data && Array.isArray(data.data)) models = data.data.map(m => m.id || m.model);
             else if (typeof data === 'string') models = data.split(',').map(m => m.trim());
 
-            console.log('✅ Extracted models:', models.slice(0, 5));
+            console.log(' Extracted models:', models.slice(0, 5));
 
             if (!models.length) throw new Error('No models found');
 
@@ -129,9 +129,9 @@ class ExperimentUI {
 
         btn.disabled = !ready;
         if (ready) {
-            btn.textContent = `🚀 Run (${models.length} models)`;
+            btn.textContent = ` Run (${models.length} models)`;
         } else {
-            btn.textContent = '🚀 Run Experiments';
+            btn.textContent = ' Run Experiments';
         }
     }
 
@@ -139,8 +139,8 @@ class ExperimentUI {
         this.resetResults();
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
-        btn.textContent = '⏳ Processing...';
-        this.setStatus('running', '⏳ Running experiments...');
+        btn.textContent = ' Processing...';
+        this.setStatus('running', ' Running experiments...');
 
         try {
             const payload = {
@@ -163,15 +163,15 @@ class ExperimentUI {
             const result = await res.json();
 
             this.showResults(result);
-            this.setStatus('success', '✅ COMPLETED!');
+            this.setStatus('success', ' COMPLETED!');
 
         } catch (e) {
             this.setStatus('error', `❌ Failed: ${e.message}`);
             showError(e.message);
-            btn.textContent = '🚀 Run Experiments';  // ✅ Error case
+            btn.textContent = ' Run Experiments';
         } finally {
             btn.disabled = false;
-            btn.textContent = '🚀 Run Experiments';  // ✅ ALWAYS reset to Start
+            btn.textContent = ' Run Experiments';
         }
     }
 
@@ -240,7 +240,7 @@ class ExperimentUI {
 
                 <details open>
                     <summary style="font-size: 18px; font-weight: 600; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin-bottom: 16px; cursor: pointer;">
-                        📊 TOP ${Math.min(topCombos.length, 10)} COMBINATIONS (by Weighted Score)
+                         TOP ${Math.min(topCombos.length, 10)} COMBINATIONS (by Weighted Score)
                     </summary>
                     <div class="test-results" style="overflow-x: auto; background: #f8f9fa; border-radius: 12px; padding: 16px;">
                         <table style="
@@ -301,7 +301,7 @@ class ExperimentUI {
                 <!-- ✅ PERFECTLY VISIBLE METRICS BREAKDOWN -->
                 <details>
                     <summary style="font-size: 18px; font-weight: 600; padding: 16px; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: #ecf0f1; border-radius: 12px; margin: 24px 0 16px 0; cursor: pointer;">
-                        📈 Metrics Breakdown (Best Config)
+                         Metrics Breakdown (Best Config)
                     </summary>
                     <div class="metrics-breakdown" style="
                         display: grid;
@@ -336,7 +336,7 @@ class ExperimentUI {
 
                 <details>
                     <summary style="font-size: 16px; font-weight: 600; padding: 16px; background: linear-gradient(135deg, #1e1e1e 0%, #2c3e50 100%); color: #d4d4d4; border-radius: 12px; cursor: pointer;">
-                        🔍 Raw JSON Response (${JSON.stringify(data).length} chars)
+                         Raw JSON Response
                     </summary>
                     <pre style="
                         background: #1e1e1e !important;
@@ -357,7 +357,7 @@ class ExperimentUI {
             </div>
         `;
 
-        showSuccess(`✅ COMPLETE! Best: ${best.model_name || 'N/A'} (${best.weighted_score?.toFixed(3) || 'N/A'}) | ${data.total_combos || 0} combos`);
+        showSuccess(` COMPLETE! Best: ${best.model_name || 'N/A'} (${best.weighted_score?.toFixed(3) || 'N/A'}) | ${data.total_combos || 0} combos`);
     }
 
 }

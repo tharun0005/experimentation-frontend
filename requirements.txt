@@ -5,3 +5,5 @@ uvicorn
 jinja2
 pydantic
 pydantic_settings
+python-jose[cryptography]
+python-multipart
