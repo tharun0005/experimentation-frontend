@@ -298,6 +298,46 @@ class ExperimentUI {
                     </div>
                 </details>
 
+                ${data.clearml_url ? `
+                    <div style="
+                        margin: 24px 0;
+                        padding: 20px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        border-radius: 12px;
+                        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    ">
+                        <div style="color: white;">
+                            <strong style="font-size: 18px; display: block; margin-bottom: 4px;">View Full Experiment Details</strong>
+                            <span style="font-size: 14px; opacity: 0.9;">Open this experiment in ClearML dashboard for comprehensive metrics and logs</span>
+                        </div>
+                        <button onclick="window.open('${data.clearml_url}', '_blank')" style="
+                            background: white;
+                            color: #667eea;
+                            border: none;
+                            padding: 14px 28px;
+                            border-radius: 10px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            cursor: pointer;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            white-space: nowrap;
+                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.3)';"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Open in ClearML
+                        </button>
+                    </div>
+                ` : ''}
+
                 <!-- ✅ PERFECTLY VISIBLE METRICS BREAKDOWN -->
                 <details>
                     <summary style="font-size: 18px; font-weight: 600; padding: 16px; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: #ecf0f1; border-radius: 12px; margin: 24px 0 16px 0; cursor: pointer;">

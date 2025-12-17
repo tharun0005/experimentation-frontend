@@ -510,3 +510,15 @@ textarea::placeholder {
         padding: 1.5rem 2rem;
     }
 }
+
+@media (max-width: 640px) {
+    .clearml-button-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .clearml-button-container button {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
